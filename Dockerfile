@@ -10,7 +10,7 @@ RUN unzip /tmp/bw.zip -d /tmp/bw && \
 FROM debian:12-slim
 
 RUN apt-get update && \
-    apt-get install -y ca-certificates && \
+    apt-get install -y ca-certificates jq && \
     rm -rf /var/lib/apt/lists/*
 
 COPY --from=downloader /tmp/bw/bw /usr/local/bin/
