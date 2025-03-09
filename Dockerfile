@@ -2,8 +2,8 @@ FROM alpine:latest AS downloader
 
 ARG CLI_VERSION
 
-RUN wget -O /tmp/bw.zip "https://github.com/bitwarden/clients/releases/download/cli-v$CLI_VERSION/bw-linux-$CLI_VERSION.zip"
 RUN apk add --no-cache unzip
+ADD "https://github.com/bitwarden/clients/releases/download/cli-v$CLI_VERSION/bw-linux-$CLI_VERSION.zip" /tmp/bw.zip
 RUN unzip /tmp/bw.zip -d /tmp/bw && \
     chmod +x /tmp/bw/bw
 

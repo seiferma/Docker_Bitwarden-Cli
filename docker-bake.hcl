@@ -1,5 +1,5 @@
 variable "VERSION" {
-  default = "2024.2.0"
+  default = "2025.1.3"
 }
 
 group "default" {
