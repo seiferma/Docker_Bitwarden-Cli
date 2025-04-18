@@ -1,6 +1,6 @@
 variable "RELEASE_VERSION" {
   # renovate: datasource=github-releases depName=bitwarden/clients
-  default = "cli-v2025.1.3"
+  default = "cli-v2025.3.0"
 }
 
 function "get_version" {
