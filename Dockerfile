@@ -7,7 +7,7 @@ ADD "https://github.com/bitwarden/clients/releases/download/cli-v$CLI_VERSION/bw
 RUN unzip /tmp/bw.zip -d /tmp/bw && \
     chmod +x /tmp/bw/bw
 
-FROM debian:12-slim
+FROM debian:13-slim
 
 RUN apt-get update && \
     apt-get install -y ca-certificates jq && \
