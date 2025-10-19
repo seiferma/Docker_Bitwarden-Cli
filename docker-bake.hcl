@@ -9,14 +9,41 @@ function "get_version" {
 }
 
 group "default" {
-  targets = ["default"]
+  targets = ["app", "minimal"]
 }
 
-target "default" {
+target "app" {
+  target = "app"
   tags = [
     "quay.io/seiferma/bitwarden-cli:${get_version(RELEASE_VERSION)}",
     "quay.io/seiferma/bitwarden-cli:latest"]
   args = {
     CLI_VERSION = "${get_version(RELEASE_VERSION)}"
   }
+}
+
+target "minimal" {
+  target = "minimal"
+  tags = [
+    "quay.io/seiferma/bitwarden-cli:minimal-${get_version(RELEASE_VERSION)}",
+    "quay.io/seiferma/bitwarden-cli:minimal-latest"]
+  args = {
+    CLI_VERSION = "${get_version(RELEASE_VERSION)}"
+  }
+}
+
+group "test" {
+  targets = ["test-minimal", "test-app"]
+}
+
+target "test-minimal" {
+  inherits = ["minimal"]
+  platforms = ["linux/amd64"]
+  tags = ["test-image-minimal"]
+}
+
+target "test-app" {
+  inherits = ["app"]
+  platforms = ["linux/amd64"]
+  tags = ["test-image-app"]
 }
